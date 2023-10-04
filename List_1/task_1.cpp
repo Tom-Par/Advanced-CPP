@@ -20,4 +20,4 @@ std::cout << add(a,c) << std::endl;
 std::cout << alias(b,c, [](auto b,auto c) {return b > c ? b : c;}) << std::endl;
 //wyrażenie alias z operacją mnożenia
 std::cout << alias(a, b, [](auto a,auto b) {return a*b;}) << std::endl;
-};
+}

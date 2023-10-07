@@ -13,6 +13,9 @@ int main() {
     V.pop();
     V.print();
     
-    std::cout<< "Capacity: "<< V.getcapacity() <<std::endl;
-    std::cout<< "Size: "<<V.size() << std::endl;
+    V.push(7,0);
+    V.print();
+
+    std::cout<< "Capacity: "<< V.getcapacity() << std::endl;
+    std::cout<< "Size: "<< V.size() << std::endl;
 }

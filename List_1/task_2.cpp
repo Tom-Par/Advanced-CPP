@@ -5,7 +5,7 @@ int main() {
 
     V.push(1);
     V.push(3);
-    V.push(4); 
+    V.push(4);
     V.push(6);
 
     V.print();

@@ -1049,5 +1049,4 @@ dkms.conf
 
 #testing linux exeutable ignore
 *
-!*.*
 !*/

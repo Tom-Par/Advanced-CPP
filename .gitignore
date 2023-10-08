@@ -1046,3 +1046,8 @@ dkms.conf
 
 #vscode folder ignore
 .vscode
+
+#testing linux exeutable ignore
+*
+!*.*
+!*/

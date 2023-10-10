@@ -60,12 +60,13 @@ class vector {
             }
         }    
         
-        // function to extract alement at provided index
+        // function to extract element at provided index
         T get(int index) {
             if(index < current) 
-                return arr[index];
+                std::cout << arr[index] << std::endl;
             else
-                return 0;
+                std::cout << "Provided index does not exist." << std::endl;
+                return EXIT_SUCCESS;
         }
 
         // function to delete last element
@@ -74,12 +75,12 @@ class vector {
         }
 
         //function to get vector size
-        int size() {
+        int get_size() {
             return current;
         }
 
         //function to get vector capacity
-        int getcapacity() {
+        int get_capacity() {
             return capacity;
         } 
 
@@ -90,5 +91,19 @@ class vector {
             }
             std::cout << std::endl;
         }
+
     };
+        template <typename T>
+    T operator*(const vector<T>& v1, const std::vector<T>& v2) {
+        if (v1.get_size() != v2.size()) {
+            throw std::invalid_argument("Vectors must have the same number of elements for dot product.");
+        }
+
+        T result = 0;
+        for (int i = 0; i < v1.get_size(); i++) {
+            result += v1[i] * v2[i];
+        }
+
+        return result;
+    }
 }

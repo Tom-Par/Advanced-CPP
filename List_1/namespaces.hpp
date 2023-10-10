@@ -64,6 +64,8 @@ class vector {
         T get(int index) {
             if(index < current) 
                 return arr[index];
+            else
+                return 0;
         }
 
         // function to delete last element

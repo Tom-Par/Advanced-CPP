@@ -12,15 +12,24 @@ int main() {
     V.push(6);
 
     V.print();
+    std::cout<< "Size: "<< V.get_size() << std::endl;
+    std::cout<< "Capacity: "<< V.get_capacity() << std::endl;
 
     V.pop();
     V.print();
+
+    std::cout<< "Size: "<< V.get_size() << std::endl;
+    std::cout<< "Capacity: "<< V.get_capacity() << std::endl;
     
     V.push(7,0);
     V.print();
 
-    std::cout<< "Capacity: "<< V.get_capacity() << std::endl;
+    V.push(12);
+
+    V.push(10);
     std::cout<< "Size: "<< V.get_size() << std::endl;
+    std::cout<< "Capacity: "<< V.get_capacity() << std::endl;
+
     V.get(6);
     V.get(0);
 
@@ -32,5 +41,7 @@ int main() {
     std::cout<<W.size()<<std::endl;
 
     std::vector<int> a{4, 5, 6};
+
+    // std::cout<< V * a <<std::endl;
     
 }

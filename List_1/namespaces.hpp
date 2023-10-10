@@ -9,7 +9,7 @@ class vector {
         int capacity;
         
         // Current - number of elements
-        int current;
+        int size;
             
         // Integer ponter - stores vector address
         T* arr;
@@ -22,11 +22,11 @@ class vector {
         vector() {
             arr = new T[1];
             capacity = 1;
-            current = 0;
+            size = 0;
         }
 
         // Destructor to dellocate storage
-        // prevents memory leak
+        // should prevent memory leak
         ~vector() {
             delete [] arr;
         }
@@ -34,9 +34,9 @@ class vector {
         // function to add elements
         void push(T data) {
 
-            if(current == capacity) {
+            if(size == capacity) {
                 T* temp = new T[2 * capacity];
-                //copy 
+                //copy
                 for(int i = 0; i<capacity; i++) {
                     temp[i] = arr[i];
                 }
@@ -46,8 +46,8 @@ class vector {
                 arr = temp;
             }
             // inserting data 
-            arr[current] = data;
-            current++;
+            arr[size] = data;
+            size++;
         }
 
         // Function to add data at any index
@@ -62,21 +62,21 @@ class vector {
         
         // function to extract element at provided index
         T get(int index) {
-            if(index < current) 
+            if(index < size) 
                 std::cout << arr[index] << std::endl;
             else
-                std::cout << "Provided index does not exist." << std::endl;
+                throw std::logic_error("Provided index does not exist.");
                 return EXIT_SUCCESS;
         }
 
         // function to delete last element
         void pop() {
-            current--;
+            size--;
         }
 
         //function to get vector size
         int get_size() {
-            return current;
+            return size;
         }
 
         //function to get vector capacity
@@ -86,24 +86,25 @@ class vector {
 
         //function to get all vector elements
         void print() {
-            for (int i=0; i<current; i++) {
+            for (int i=0; i<size; i++) {
                 std::cout << arr[i] << " ";
             }
             std::cout << std::endl;
         }
 
+
     };
-        template <typename T>
-    T operator*(const vector<T>& v1, const std::vector<T>& v2) {
-        if (v1.get_size() != v2.size()) {
-            throw std::invalid_argument("Vectors must have the same number of elements for dot product.");
+    //TODO
+    template <typename T, typename T2>
+    auto operator*(T const &a, T2 const &b) -> decltype(a[0] * b[0]) {
+        if(a.size() != b.size()) {
+           throw std::logic_error("Both sizes should me equal");
         }
-
-        T result = 0;
-        for (int i = 0; i < v1.get_size(); i++) {
-            result += v1[i] * v2[i];
+        auto result = a[0] * b[0];
+        for (int i =0; i< a.size(); i++)
+        {
+            result += a[i] * b[i];
         }
-
         return result;
     }
 }

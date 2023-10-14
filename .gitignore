@@ -1048,5 +1048,5 @@ dkms.conf
 .vscode
 
 #testing linux exeutable ignore
-*
-!*/
+# *
+# !*/

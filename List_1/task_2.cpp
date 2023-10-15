@@ -13,7 +13,7 @@
             result += a[i] * b[i];
         }
         return result;
-    }
+    };
 
 int main() {
     cpplab::vector<int> V;
@@ -45,15 +45,17 @@ int main() {
     V.get(6);
     V.get(0);
 
+    V.pop();
+    V.pop();
+
     //std::vector to test scalar multiplying 
     std::vector<int> W = {1,2,3};
     std::vector<float> W2 = {1.2,2.3,3.4};
- 
+    
+    std::cout<<"W size: "<<W.size()<<std::endl;
 
-    std::cout<<W.size()<<std::endl;
-
-    std::vector<int> a{4, 5, 6,7};
-
-    std::cout<< V * a <<std::endl;
+    std::cout<< "W * V: "<< W * V <<std::endl;
+    std::cout<<"W * W2: "<< W * W2 <<std::endl;
+    std::cout<<"V * W2: "<< V * W2 <<std::endl;
     
 }

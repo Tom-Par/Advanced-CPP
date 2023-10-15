@@ -6,10 +6,10 @@ class vector {
     private:
 
         // Vector storage capacity
-        int capacity;
+        size_t capacity;
         
         // Current - number of elements
-        int size;
+        size_t size;
             
         // Integer ponter - stores vector address
         T* arr;
@@ -31,13 +31,31 @@ class vector {
             delete [] arr;
         }
 
+        T &operator[](size_t index) {
+            if (index<0 || index >= size)
+                std::cout<<"Vector index out of range" <<std::endl;
+            return arr[index];
+        }
+        
+        T operator[](size_t index) const {
+            if (index<0 || index>= size)
+                std::cout<<"Vector index out of range" <<std::endl;
+            return arr[index];
+        }
+
+        friend std::ostream &operator<<(std::ostream &os, const vector<T> &v) {
+            for (size_t i=0; i<v.size; ++i)
+                os << v[i] << " ";
+            return os;
+        }
+
         // function to add elements
         void push(T data) {
 
             if(size == capacity) {
                 T* temp = new T[2 * capacity];
                 //copy
-                for(int i = 0; i<capacity; i++) {
+                for(size_t i = 0; i<capacity; i++) {
                     temp[i] = arr[i];
                 }
                 // deleting previous array 
@@ -51,7 +69,7 @@ class vector {
         }
 
         // Function to add data at any index
-        void push(T data, int index) {
+        void push(T data, size_t index) {
             if( index == capacity) {
                 push(data);
             }
@@ -61,11 +79,12 @@ class vector {
         }    
         
         // function to extract element at provided index
-        T get(int index) {
+        T get(size_t index) {
             if(index < size) 
                 std::cout << arr[index] << std::endl;
             else
-                throw std::logic_error("Provided index does not exist.");
+                // throw std::logic_error("Provided index does not exist.");
+                std::cout<< "Provided index does not exist."<<std::endl;
                 return EXIT_SUCCESS;
         }
 
@@ -75,18 +94,18 @@ class vector {
         }
 
         //function to get vector size
-        int get_size() {
+        size_t size() {
             return size;
         }
 
         //function to get vector capacity
-        int get_capacity() {
+        size_t capacity() {
             return capacity;
         } 
 
         //function to get all vector elements
         void print() {
-            for (int i=0; i<size; i++) {
+            for (size_t i=0; i<size; i++) {
                 std::cout << arr[i] << " ";
             }
             std::cout << std::endl;
@@ -94,17 +113,5 @@ class vector {
 
 
     };
-    //TODO
-    template <typename T, typename T2>
-    auto operator*(T const &a, T2 const &b) -> decltype(a[0] * b[0]) {
-        if(a.size() != b.size()) {
-           throw std::logic_error("Both sizes should me equal");
-        }
-        auto result = a[0] * b[0];
-        for (int i =0; i< a.size(); i++)
-        {
-            result += a[i] * b[i];
-        }
-        return result;
-    }
+   
 }

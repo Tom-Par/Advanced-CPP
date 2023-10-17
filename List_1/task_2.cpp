@@ -42,7 +42,7 @@ int main() {
     std::cout<< "Size: "<< V.size() << std::endl;
     std::cout<< "Capacity: "<< V.capacity() << std::endl;
 
-    V.get(6);
+    // V.get(6);
     V.get(0);
 
     V.pop();

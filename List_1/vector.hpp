@@ -33,20 +33,14 @@ class vector {
 
         T &operator[](size_t index) {
             if (index<0 || index >= size_)
-                std::cout<<"Vector index out of range" <<std::endl;
+                throw std::logic_error("Vector index out of range");
             return arr[index];
         }
         
         T operator[](size_t index) const {
             if (index<0 || index>= size_)
-                std::cout<<"Vector index out of range" <<std::endl;
+                throw std::logic_error("Vector index out of range");
             return arr[index];
-        }
-
-        friend std::ostream &operator<<(std::ostream &os, const vector<T> &v) {
-            for (size_t i=0; i<v.size_; ++i)
-                os << v[i] << " ";
-            return os;
         }
 
         // function to add elements
@@ -83,8 +77,8 @@ class vector {
             if(index < size_) 
                 std::cout << arr[index] << std::endl;
             else
-                // throw std::logic_error("Provided index does not exist.");
-                std::cout<< "Provided index does not exist."<<std::endl;
+                throw std::logic_error("Provided index does not exist.");
+                // std::cout<< "Provided index does not exist."<<std::endl;
                 return EXIT_SUCCESS;
         }
 

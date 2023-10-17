@@ -1,7 +1,6 @@
 #include "vector.hpp"
 #include <vector>
 
- //TODO
     template <typename T, typename T2>
     auto operator*(T const &a, T2 const &b) -> decltype(a[0] * b[0]) {
         if(a.size() != b.size()) {

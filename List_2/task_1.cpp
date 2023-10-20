@@ -1,4 +1,4 @@
-#include "template_add_2.hpp"
+#include "cpplab.hpp"
 #include <iostream>
 
 int main() {
@@ -8,7 +8,7 @@ int main() {
     const char *c = "cpp";
     const char *d = "lab";
     
-    std::cout << add(&a, &b) <<std::endl;
-    std::cout << add(c, d) << "\n";
+    std::cout << cpplab::add(&a, &b) <<std::endl;
+    std::cout << cpplab::add(c, d) << "\n";
     return 0;
 }

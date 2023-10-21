@@ -31,7 +31,7 @@ public:
   template <typename T, typename... Args>
     auto add_total(T first, Args... rest)
     {
-        if(sizeof...(rest) == 0)
+        if constexpr(sizeof...(rest) == 0)
             return first;
         else
             return first + add_total(rest...);

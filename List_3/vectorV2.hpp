@@ -20,14 +20,50 @@ class vector {
             
         // Default constructor
         vector() {
-            arr = new T[1];
+            printf("Created!!\n");
             capacity_ = 1;
             size_ = 0;
+            arr = new T[1];
+        }
+
+        //Copy constructor
+        vector(const vector& other) {
+            printf("Copied\n");
+            capacity_ = other.capacity_;
+            size_ = other.size_;
+            arr = new T[capacity_];
+            for (size_t i = 0; i< size_; i++) {
+                arr[i] = other.arr[i];
+            }
+        }
+
+        //Copy operator "="
+        vector& operator=(const vector& other) {
+            delete[] arr;
+            capacity_ = other.capacity_;
+            size_ = other.size_;
+            arr = new T[capacity_];
+            for (size_t i = 0; i<size_; i++) {
+                arr[i] = other.arr[i];
+            }
+            return *this;
+        }
+        
+        //Move constructor
+        vector(vector&& other) noexcept {
+            printf("Moved\n");
+            capacity_ = other.capacity_;
+            size_ = other.size_;
+            arr = other.arr;
+
+            other.size_ = 0;
+            other.arr = nullptr;
         }
 
         // Destructor to dellocate storage
-        // should prevent memory leak
+        // Memory leak prevention
         ~vector() {
+            printf("Destroyed!\n");
             delete [] arr;
         }
 
@@ -100,9 +136,9 @@ class vector {
         //function to get all vector elements
         void print() {
             for (size_t i=0; i<size_; i++) {
-                std::cout << arr[i] << " ";
+                printf("%i",arr[i]);
             }
-            std::cout << std::endl;
+            printf("\n");
         }
 
     };

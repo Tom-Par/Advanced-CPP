@@ -152,5 +152,23 @@ class vector {
             printf("\n");
         }
 
+        
+
+        template <typename... Args>
+        void emplace_back(Args&&... args) {
+            if (size_ == capacity_) {
+                T* temp = new T[2* capacity_];
+                for (size_t i=0;i<capacity_;i++) {
+                    temp[i] = std::move(arr[i]);
+                }
+                delete[] arr;
+                capacity_ *=2;
+                arr = temp;
+            }
+            arr[size_] = T(std::forward<Args>(args)...);
+            size_++;
+        }
+
     };
 }
+

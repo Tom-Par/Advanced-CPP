@@ -19,6 +19,14 @@ int main() {
     V.print();
     V2.print();
     V3.print();
+
+    cpplab::vector<int> V4;
+    V4.push(2);
+    V4.push(5);
+
+    cpplab::vector<int> V5 = std::move(V4);
     
+    V4.print();
+    V5.print();
     
 }

@@ -56,10 +56,21 @@ class vector {
             size_ = other.size_;
             arr = other.arr;
 
+            other.capacity_ = 0;
             other.size_ = 0;
             other.arr = nullptr;
         }
+        // Move operator "="
+        vector& operator=(vector&& other) noexcept {
+            delete[] arr;
+            capacity_ = other.capacity_;
+            size = other.size_;
+            arr = other.arr;
 
+            other.capacity_ = 0;
+            other.size_ = 0;
+            other.arr = nullptr;
+        }
         // Destructor to dellocate storage
         // Memory leak prevention
         ~vector() {
@@ -142,5 +153,4 @@ class vector {
         }
 
     };
-   
 }

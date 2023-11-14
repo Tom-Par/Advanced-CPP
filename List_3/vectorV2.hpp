@@ -90,7 +90,7 @@ class vector {
             return arr[index];
         }
 
-        // function to add elements
+        // method to add elements
         void push(T data) {
 
             if(size_ == capacity_) {
@@ -109,7 +109,7 @@ class vector {
             size_++;
         }
 
-        // Function to add data at any index
+        // method to add data at any index
         void push(T data, size_t index) {
             if( index == capacity_) {
                 push(data);
@@ -119,7 +119,7 @@ class vector {
             }
         }    
         
-        // function to extract element at provided index
+        // method to extract element at provided index
         T get(size_t index) {
             if(index < size_) 
                 std::cout << arr[index] << std::endl;
@@ -129,22 +129,22 @@ class vector {
                 return EXIT_SUCCESS;
         }
 
-        // function to delete last element
+        // method to delete last element
         void pop() {
             size_--;
         }
 
-        //function to get vector size
+        //method to get vector size
         size_t size() const {
             return size_;
         }
 
-        //function to get vector capacity
+        //method to get vector capacity
         size_t capacity() const {
             return capacity_;
         } 
 
-        //function to get all vector elements
+        //method to get all vector elements
         void print() {
             for (size_t i=0; i<size_; i++) {
                 printf("%i",arr[i]);
@@ -152,10 +152,17 @@ class vector {
             printf("\n");
         }
 
-        
+        // modified method for Pixel structure
+        void print2() {
+            for (size_t i=0; i<size_; i++) {
+                std::cout << "(" << arr[i].r << ", " << arr[i].g << ", " << arr[i].b << ")" <<std::endl;
+            }
+            printf("\n");
+        }
 
         template <typename... Args>
         void emplace_back(Args&&... args) {
+            printf("Emplace\n");
             if (size_ == capacity_) {
                 T* temp = new T[2* capacity_];
                 for (size_t i=0;i<capacity_;i++) {

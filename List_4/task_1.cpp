@@ -2,7 +2,7 @@
 #include <vector>
 
 template <typename T>
-concept Scalar = requires(const T a, const T b) { 
+concept Scalar = requires(T const a, T const b) { 
     {a[0] * b[0]} -> std::same_as<decltype(a[0] * b[0])>;
 };
 

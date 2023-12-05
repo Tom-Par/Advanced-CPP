@@ -4,8 +4,6 @@
 #include <future>
 
 int thread_id(){
-    static std::mutex mutex;
-    std::lock_guard<std::mutex> lock(mutex);
     static int i = 0; 
     thread_local int id = ++i;
     return i;
@@ -17,6 +15,22 @@ void print_text(std::string text) {
     std::cout << "Thread " << thread_id() << ": "<< text<<std::endl;
 }
 
+void foo1(std::launch fun) {
+    auto f = std::async(fun, &print_text, "Jeden");
+    f.get();
+}
+
+void foo2(std::launch fun) {
+    auto f = std::async(fun, &print_text, "Dwa");
+    foo1(fun);
+    f.get();
+}
+
+void foo3(std::launch fun) {
+    auto f = std::async(fun, &print_text, "Trzy");
+    foo2(fun);
+    f.get();
+}
 
 int main() {
     std::thread th1( &print_text, "Jeden");
@@ -34,4 +48,11 @@ int main() {
     th5.join();
     th6.join();
     th7.join();
+
+    std::cout<<"\n";
+    
+    foo3(std::launch::async);
+    std::cout<<"\n";
+    foo3(std::launch::deferred);
+    
 }

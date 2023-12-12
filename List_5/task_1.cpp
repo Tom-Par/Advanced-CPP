@@ -10,8 +10,8 @@ int thread_id(){
 }
 
 void print_text(std::string text) {
-    static std::mutex mutex;
-    std::lock_guard<std::mutex> lock(mutex);
+    static std::mutex mut;
+    std::lock_guard<std::mutex> lock(mut);
     std::cout << "Thread " << thread_id() << ": "<< text<<std::endl;
 }
 

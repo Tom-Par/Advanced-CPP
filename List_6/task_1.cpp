@@ -82,17 +82,17 @@ private:
 };
 
 int main() {
-    ThreadPool pool(10); // Utworzenie puli wątków z 4 wątkami
+    ThreadPool pool(10); // Utworzenie puli wątków z 10 wątkami
 
     // Dodanie zadań do puli
     for (int i = 0; i < 10; ++i) {
         pool.add_task([i] {
-            return i * 4.0; // Przykładowe zadanie: zwraca podwójną wartość licznika
+            return i * 2.0; 
         });
     }
 
     // Oczekiwanie na zakończenie wszystkich zadań
-    std::this_thread::sleep_for(std::chrono::seconds(2)); // Poczekaj chwilę, aby zadania zostały wykonane
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 
     // Obliczenie średniej wyników
     double avg = pool.average();

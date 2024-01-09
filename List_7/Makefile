@@ -4,7 +4,7 @@ CFLAGS := -std=c++20
 SRCS := task_1.cpp
 
 OBJS := $(SRCS:.cpp=.o)
-TARGET := multi_thread
+TARGET := task_1
 
 .PHONY: all clean
 

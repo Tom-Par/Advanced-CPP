@@ -35,30 +35,33 @@ public:
 
 private:
     void start(std::size_t numThreads) {
-        for (std::size_t i = 0; i < numThreads; ++i) {
-            threads.emplace_back([this] {
-                while (true) {
-                    std::function<double()> task;
-                    {
-                        std::unique_lock<std::mutex> lock(mutex_);
-                        condition_.wait(lock, [this] { return stop_flag || !tasks.empty(); });
-                        if (stop_flag && tasks.empty()) {
-                            return;
-                        }
+    for (std::size_t i = 0; i < numThreads; ++i) {
+        threads.emplace_back([this] {
+            bool continueLoop = true;
+            while (continueLoop) {
+                std::function<double()> task;
+                {
+                    std::unique_lock<std::mutex> lock(mutex_);
+                    condition_.wait(lock, [this] { return stop_flag || !tasks.empty(); });
+                    if (stop_flag && tasks.empty()) {
+                        continueLoop = false;  
+                    } else {
                         task = std::move(tasks.front());
                         tasks.pop();
                     }
-                    if (task) {
-                        double result = task();
-                        {
-                            std::lock_guard<std::mutex> lock(mutex_);
-                            results.push_back(result);
-                        }
+                }
+                if (task) {
+                    double result = task();
+                    {
+                        std::lock_guard<std::mutex> lock(mutex_);
+                        results.push_back(result);
                     }
                 }
-            });
-        }
+            }
+        });
     }
+}
+
 
     void stop() noexcept {
         {
